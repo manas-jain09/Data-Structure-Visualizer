@@ -280,3 +280,206 @@ document.querySelector(".linkedlist-reset").addEventListener("click", () => {
 document.querySelector(".queue-reset").addEventListener("click", () => {
     queue.reset();
 });
+
+class ArrayDS {
+    constructor() {
+        this.array = [];
+        this.lastAdded = null;
+        this.lastRemoved = null;
+        this.maxSize = 10;
+    }
+
+    add(value) {
+        if (this.array.length < this.maxSize) {
+            this.array.push(value);
+            this.lastAdded = value;
+            this.lastRemoved = null;
+            this.display();
+            this.displayMessage(`Added: ${value}`, 'add');
+        } else {
+            this.displayMessage('Array is full', 'message');
+        }
+    }
+
+    remove(value) {
+        const index = this.array.indexOf(value);
+        if (index !== -1) {
+            this.lastRemoved = this.array.splice(index, 1)[0];
+            this.lastAdded = null;
+            this.display();
+            this.displayMessage(`Removed: ${this.lastRemoved}`, 'remove');
+        } else {
+            this.displayMessage('Element not found in array', 'message');
+        }
+    }
+
+    reset() {
+        this.array = [];
+        this.lastAdded = null;
+        this.lastRemoved = null;
+        this.display();
+        this.displayMessage('Array reset', 'message');
+    }
+
+    display() {
+        const container = document.querySelector(".array-display");
+        container.innerHTML = "";
+        this.array.forEach(value => {
+            const element = document.createElement("div");
+            element.classList.add("node");
+            element.innerText = value;
+            container.appendChild(element);
+        });
+
+        document.querySelector('.array-size-box').innerText = this.array.length;
+        document.querySelector('.array-last-added-box').innerText = this.lastAdded || '';
+        document.querySelector('.array-last-removed-box').innerText = this.lastRemoved || '';
+    }
+
+    displayMessage(message, type) {
+        const messageBox = document.querySelector('.array-message');
+        messageBox.innerHTML = `<p class="${type}">${message}</p>`;
+        setTimeout(() => {
+            messageBox.innerHTML = '';
+        }, 3000);
+    }
+}
+
+
+class Dequeue {
+    constructor() {
+        this.dequeue = [];
+        this.lastAdded = null;
+        this.lastRemoved = null;
+        this.maxSize = 10;
+    }
+
+    addFront(value) {
+        if (this.dequeue.length < this.maxSize) {
+            this.dequeue.unshift(value);
+            this.lastAdded = value;
+            this.lastRemoved = null;
+            this.display();
+            this.displayMessage(`Added to front: ${value}`, 'add');
+        } else {
+            this.displayMessage('Dequeue is full', 'message');
+        }
+    }
+
+    addRear(value) {
+        if (this.dequeue.length < this.maxSize) {
+            this.dequeue.push(value);
+            this.lastAdded = value;
+            this.lastRemoved = null;
+            this.display();
+            this.displayMessage(`Added to rear: ${value}`, 'add');
+        } else {
+            this.displayMessage('Dequeue is full', 'message');
+        }
+    }
+
+    removeFront() {
+        if (this.dequeue.length > 0) {
+            this.lastRemoved = this.dequeue.shift();
+            this.lastAdded = null;
+            this.display();
+            this.displayMessage(`Removed from front: ${this.lastRemoved}`, 'remove');
+        } else {
+            this.displayMessage('Dequeue is empty', 'message');
+        }
+    }
+
+    removeRear() {
+        if (this.dequeue.length > 0) {
+            this.lastRemoved = this.dequeue.pop();
+            this.lastAdded = null;
+            this.display();
+            this.displayMessage(`Removed from rear: ${this.lastRemoved}`, 'remove');
+        } else {
+            this.displayMessage('Dequeue is empty', 'message');
+        }
+    }
+
+    reset() {
+        this.dequeue = [];
+        this.lastAdded = null;
+        this.lastRemoved = null;
+        this.display();
+        this.displayMessage('Dequeue reset', 'message');
+    }
+
+    display() {
+        const container = document.querySelector(".dequeue-display");
+        container.innerHTML = "";
+        this.dequeue.forEach(value => {
+            const element = document.createElement("div");
+            element.classList.add("node");
+            element.innerText = value;
+            container.appendChild(element);
+        });
+
+        document.querySelector('.dequeue-size-box').innerText = this.dequeue.length;
+        document.querySelector('.dequeue-last-added-box').innerText = this.lastAdded || '';
+        document.querySelector('.dequeue-last-removed-box').innerText = this.lastRemoved || '';
+    }
+
+    displayMessage(message, type) {
+        const messageBox = document.querySelector('.dequeue-message');
+        messageBox.innerHTML = `<p class="${type}">${message}</p>`;
+        setTimeout(() => {
+            messageBox.innerHTML = '';
+        }, 3000);
+    }
+}
+
+const arrayDS = new ArrayDS();
+const dequeue = new Dequeue();
+
+
+document.querySelector(".array-add").addEventListener("click", () => {
+    const value = document.querySelector(".array-input").value;
+    if (value) {
+        arrayDS.add(Number(value));
+        document.querySelector(".array-input").value = "";
+    }
+});
+
+document.querySelector(".array-remove").addEventListener("click", () => {
+    const value = document.querySelector(".array-input").value;
+    if (value) {
+        arrayDS.remove(Number(value));
+        document.querySelector(".array-input").value = "";
+    }
+});
+
+document.querySelector(".array-reset").addEventListener("click", () => {
+    arrayDS.reset();
+});
+
+document.querySelector(".dequeue-add-front").addEventListener("click", () => {
+    const value = document.querySelector(".dequeue-input").value;
+    if (value) {
+        dequeue.addFront(Number(value));
+        document.querySelector(".dequeue-input").value = "";
+    }
+});
+
+document.querySelector(".dequeue-add-rear").addEventListener("click", () => {
+    const value = document.querySelector(".dequeue-input").value;
+    if (value) {
+        dequeue.addRear(Number(value));
+        document.querySelector(".dequeue-input").value = "";
+    }
+});
+
+document.querySelector(".dequeue-remove-front").addEventListener("click", () => {
+    dequeue.removeFront();
+});
+
+document.querySelector(".dequeue-remove-rear").addEventListener("click", () => {
+    dequeue.removeRear();
+});
+
+document.querySelector(".dequeue-reset").addEventListener("click", () => {
+    dequeue.reset();
+});

@@ -15,12 +15,13 @@
             <li><a href="#stack-visualizer">Stack</a></li>
             <li><a href="#linkedlist-visualizer">Linked List</a></li>
             <li><a href="#queue-visualizer">Queue</a></li>
+            <li><a href="#array-visualizer">Array</a></li>
+            <li><a href="#dequeue-visualizer">Dequeue</a></li>
         </ul>
     </nav>
 
     <!-- Stack Visualizer -->
-    <div id="stack-visualizer" class="visualizer" >
-
+    <div id="stack-visualizer" class="visualizer">
         <div class="container">
             <div class="container-header">
                 <input type="number" class="text" required>
@@ -58,50 +59,47 @@
         </div>
     </div>
 
-<!-- Linked List Visualizer -->
-<div id="linkedlist-visualizer" class="visualizer">
-
-    <div class="container">
-        <div class="container-header">
-            <input type="number" class="linkedlist-input" required>
-            <button class="linkedlist-append">Append</button>
-            <button class="linkedlist-delete">Delete</button>
-            <button class="linkedlist-reset">Reset</button>
-        </div>
-        <div class="container-body">
-            <div class="linkedlist">
-                <div class="linkedlist-display"></div>
+    <!-- Linked List Visualizer -->
+    <div id="linkedlist-visualizer" class="visualizer">
+        <div class="container">
+            <div class="container-header">
+                <input type="number" class="linkedlist-input" required>
+                <button class="linkedlist-append">Append</button>
+                <button class="linkedlist-delete">Delete</button>
+                <button class="linkedlist-reset">Reset</button>
             </div>
-            <div class="info">
-                <div class="sec1">
-                    <h3>Head of the List:</h3>
-                    <button class="box head-box"></button>
+            <div class="container-body">
+                <div class="linkedlist">
+                    <div class="linkedlist-display"></div>
                 </div>
-                <div class="sec2">
-                    <h3>Last Appended Item:</h3>
-                    <button class="box last-appended-box"></button>
-                </div>
-                <div class="sec3">
-                    <h3>Last Deleted Item:</h3>
-                    <button class="box last-deleted-box"></button>
-                </div>
-                <div class="sec4">
-                    <h3>Size of the List:</h3>
-                    <button class="box list-size-box"></button>
-                </div>
-                <div class="message-box">
-                    <h2>Message Box</h2>
-                    <div class="linkedlist-message"></div>
+                <div class="info">
+                    <div class="sec1">
+                        <h3>Head of the List:</h3>
+                        <button class="box head-box"></button>
+                    </div>
+                    <div class="sec2">
+                        <h3>Last Appended Item:</h3>
+                        <button class="box last-appended-box"></button>
+                    </div>
+                    <div class="sec3">
+                        <h3>Last Deleted Item:</h3>
+                        <button class="box last-deleted-box"></button>
+                    </div>
+                    <div class="sec4">
+                        <h3>Size of the List:</h3>
+                        <button class="box list-size-box"></button>
+                    </div>
+                    <div class="message-box">
+                        <h2>Message Box</h2>
+                        <div class="linkedlist-message"></div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-
 
     <!-- Queue Visualizer -->
     <div id="queue-visualizer" class="visualizer">
-
         <div class="container">
             <div class="container-header">
                 <input type="number" class="queue-input" required>
@@ -138,6 +136,78 @@
             </div>
         </div>
     </div>
+
+    <!-- Array Visualizer -->
+<div id="array-visualizer" class="visualizer">
+    <div class="container">
+        <div class="container-header">
+            <input type="number" class="array-input" required>
+            <button class="array-add">Add</button>
+            <button class="array-remove">Remove</button>
+            <button class="array-reset">Reset</button>
+        </div>
+        <div class="container-body">
+            <div class="array">
+                <div class="array-display"></div>
+            </div>
+            <div class="info">
+                <div class="sec1">
+                    <h3>Size of the Array:</h3>
+                    <button class="box array-size-box"></button>
+                </div>
+                <div class="sec2">
+                    <h3>Last Added Item:</h3>
+                    <button class="box array-last-added-box"></button>
+                </div>
+                <div class="sec3">
+                    <h3>Last Removed Item:</h3>
+                    <button class="box array-last-removed-box"></button>
+                </div>
+                <div class="message-box">
+                    <h2>Message Box</h2>
+                    <div class="array-message"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Dequeue Visualizer -->
+<div id="dequeue-visualizer" class="visualizer">
+    <div class="container">
+        <div class="container-header">
+            <input type="number" class="dequeue-input" required>
+            <button class="dequeue-add-front">Add Front</button>
+            <button class="dequeue-add-rear">Add Rear</button>
+            <button class="dequeue-remove-front">Remove Front</button>
+            <button class="dequeue-remove-rear">Remove Rear</button>
+            <button class="dequeue-reset">Reset</button>
+        </div>
+        <div class="container-body">
+            <div class="dequeue">
+                <div class="dequeue-display"></div>
+            </div>
+            <div class="info">
+                <div class="sec1">
+                    <h3>Size of the Dequeue:</h3>
+                    <button class="box dequeue-size-box"></button>
+                </div>
+                <div class="sec2">
+                    <h3>Last Added Item:</h3>
+                    <button class="box dequeue-last-added-box"></button>
+                </div>
+                <div class="sec3">
+                    <h3>Last Removed Item:</h3>
+                    <button class="box dequeue-last-removed-box"></button>
+                </div>
+                <div class="message-box">
+                    <h2>Message Box</h2>
+                    <div class="dequeue-message"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
     <script src="index.js"></script>
 </body>
