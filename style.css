@@ -147,7 +147,7 @@ header {
     max-width: 1000px;
     background-color: white;
     box-shadow: 8px 8px 20px rgb(128, 128, 128);
-    position: relative;
+    margin: auto;
     overflow: hidden;
     border-radius: 20px;
     padding: 20px;
