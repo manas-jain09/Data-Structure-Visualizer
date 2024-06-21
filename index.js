@@ -1,3 +1,24 @@
+document.addEventListener("DOMContentLoaded", function() {
+    // Get all navigation links
+    const navLinks = document.querySelectorAll('nav ul li a');
+
+    // Add click event listener to each link
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent default link behavior
+            const targetId = this.getAttribute('href'); // Get the target visualizer ID
+            const targetVisualizer = document.querySelector(targetId); // Select the target visualizer
+
+            // Remove 'active' class from all visualizers
+            document.querySelectorAll('.visualizer').forEach(vis => vis.classList.remove('active'));
+
+            // Add 'active' class to the clicked visualizer
+            targetVisualizer.classList.add('active');
+        });
+    });
+});
+
+
 class Stack {
     constructor() {
         this.stack = [];
@@ -283,38 +304,48 @@ document.querySelector(".queue-reset").addEventListener("click", () => {
 
 class ArrayDS {
     constructor() {
-        this.array = [];
+        this.array = new Array(5).fill(null); // Initialize with null to represent empty slots
         this.lastAdded = null;
         this.lastRemoved = null;
-        this.maxSize = 10;
+        this.maxSize = 5;
     }
 
-    add(value) {
-        if (this.array.length < this.maxSize) {
-            this.array.push(value);
+    add(index, value) {
+        if (index < 0 || index >= this.maxSize) {
+            this.displayMessage('Index out of bounds', 'message');
+            return;
+        }
+
+        if (this.array[index] === null) {
+            this.array[index] = value;
             this.lastAdded = value;
             this.lastRemoved = null;
             this.display();
-            this.displayMessage(`Added: ${value}`, 'add');
+            this.displayMessage(`Added: ${value} at index ${index}`, 'add');
         } else {
-            this.displayMessage('Array is full', 'message');
+            this.displayMessage('Index already occupied', 'message');
         }
     }
 
-    remove(value) {
-        const index = this.array.indexOf(value);
-        if (index !== -1) {
-            this.lastRemoved = this.array.splice(index, 1)[0];
+    remove(index) {
+        if (index < 0 || index >= this.maxSize) {
+            this.displayMessage('Index out of bounds', 'message');
+            return;
+        }
+
+        if (this.array[index] !== null) {
+            this.lastRemoved = this.array[index];
+            this.array[index] = null;
             this.lastAdded = null;
             this.display();
-            this.displayMessage(`Removed: ${this.lastRemoved}`, 'remove');
+            this.displayMessage(`Removed: ${this.lastRemoved} from index ${index}`, 'remove');
         } else {
-            this.displayMessage('Element not found in array', 'message');
+            this.displayMessage('No element at specified index', 'message');
         }
     }
 
     reset() {
-        this.array = [];
+        this.array.fill(null);
         this.lastAdded = null;
         this.lastRemoved = null;
         this.display();
@@ -324,16 +355,16 @@ class ArrayDS {
     display() {
         const container = document.querySelector(".array-display");
         container.innerHTML = "";
-        this.array.forEach(value => {
+        this.array.forEach((value, index) => {
             const element = document.createElement("div");
             element.classList.add("node");
-            element.innerText = value;
+            element.innerText = value !== null ? value : '-';
             container.appendChild(element);
         });
 
-        document.querySelector('.array-size-box').innerText = this.array.length;
-        document.querySelector('.array-last-added-box').innerText = this.lastAdded || '';
-        document.querySelector('.array-last-removed-box').innerText = this.lastRemoved || '';
+        document.querySelector('.array-size-box').innerText = this.array.filter(value => value !== null).length;
+        document.querySelector('.array-last-added-box').innerText = this.lastAdded !== null ? this.lastAdded : '';
+        document.querySelector('.array-last-removed-box').innerText = this.lastRemoved !== null ? this.lastRemoved : '';
     }
 
     displayMessage(message, type) {
@@ -351,7 +382,7 @@ class Dequeue {
         this.dequeue = [];
         this.lastAdded = null;
         this.lastRemoved = null;
-        this.maxSize = 10;
+        this.maxSize = 5;
     }
 
     addFront(value) {
@@ -437,18 +468,20 @@ const dequeue = new Dequeue();
 
 
 document.querySelector(".array-add").addEventListener("click", () => {
-    const value = document.querySelector(".array-input").value;
-    if (value) {
-        arrayDS.add(Number(value));
-        document.querySelector(".array-input").value = "";
+    const index = document.querySelector(".array-index").value;
+    const value = document.querySelector(".array-value").value;
+    if (index !== '' && value !== '') {
+        arrayDS.add(Number(index), Number(value));
+        document.querySelector(".array-index").value = "";
+        document.querySelector(".array-value").value = "";
     }
 });
 
 document.querySelector(".array-remove").addEventListener("click", () => {
-    const value = document.querySelector(".array-input").value;
-    if (value) {
-        arrayDS.remove(Number(value));
-        document.querySelector(".array-input").value = "";
+    const index = document.querySelector(".array-index").value;
+    if (index !== '') {
+        arrayDS.remove(Number(index));
+        document.querySelector(".array-index").value = "";
     }
 });
 

@@ -123,6 +123,25 @@ header {
     display: block;
 }
 
+.visualizer.active {
+    display: block;
+    /* Styles for active visualizer */
+}
+
+.visualizer h1 {
+    font-size: 1.8rem;
+    color: green;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+@media (min-width: 768px) {
+    .visualizer h1 {
+        font-size: 2.5rem;
+    }
+}
+
+
 .container {
     width: 90%;
     max-width: 1000px;
@@ -223,6 +242,38 @@ header {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    gap: 5px;
+    padding-bottom: 5px;
+}
+
+.linkedlist-display {
+    height: 450px;
+    width: 100%;
+    max-width: 200px;
+    border-width: 0 4px 0px 4px;
+    border-color: black;
+    border-style: solid;
+    border-radius: 0 0 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 5px;
+    padding-bottom: 5px;
+}
+
+.main-stack-bucket {
+    height: 450px;
+    width: 100%;
+    max-width: 200px;
+    border-width: 0 4px 4px 4px;
+    border-color: black;
+    border-style: solid;
+    border-radius: 0 0 10px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column-reverse;
     gap: 5px;
     padding-bottom: 5px;
 }
