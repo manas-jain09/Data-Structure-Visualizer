@@ -246,7 +246,7 @@ header {
     padding-bottom: 5px;
 }
 
-.linkedlist-display {
+.linkedlist-display, .queue-display {
     height: 450px;
     width: 100%;
     max-width: 200px;
