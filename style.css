@@ -359,6 +359,33 @@ header {
     font-weight: 600;
 }
 
+footer {
+    background-color: green;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+footer div {
+    margin: 0 10px; /* Add spacing between names */
+}
+
+footer p,
+footer a {
+    font-family: "Poppins", sans-serif;
+    text-decoration: none;
+    color: white;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+
 @media (min-width: 768px) {
     .container-header {
         flex-direction: row;
